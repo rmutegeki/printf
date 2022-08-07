@@ -20,6 +20,9 @@ int (*_select_mod(char c))(va_list)
 	
 	if (c == 'd')
 		return (_print_d);
+	
+	if (c == 'b')
+		return (_print_b);
 
 	return (NULL);
 }

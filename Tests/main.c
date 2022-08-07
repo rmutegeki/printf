@@ -3,9 +3,8 @@
 
 int main(void)
 {
-	int n;
-	n = _printf("%d\n", 265);
-	printf("%d\n", n);
+	_printf("%b\n", 265);
+	printf("%d\n", 265);
 
 	return (0);
 }
