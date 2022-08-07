@@ -10,7 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list arguments;
-	printer printer;
+	int (*func_sel)(va_list);
 	int index = 0;
 	int characters_printed = 0;
 
@@ -26,10 +26,10 @@ int _printf(const char *format, ...)
 		if (!format[index])
 			break;
 
-		printer = _get_printer(&format[index + 1]);
-		if (printer.specifier != NULL)
+		func_sel = _select_mod(format[index + 1]);
+		if (func_sel != NULL)
 		{
-			characters_printed += printer.run(arguments);
+			characters_printed += func_sel(arguments);
 			index += 2; /* move past the specifier */
 			continue;
 		}

@@ -3,8 +3,9 @@
 
 int main(void)
 {
-	_printf("Hello %s\n", "25");
-	printf("Hello %s\n", "25");
+	int n;
+	n = _printf("Hello %s\n", "25");
+	printf("N; %d\n", n);
 
 	return (0);
 }

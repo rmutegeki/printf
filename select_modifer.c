@@ -3,30 +3,17 @@
 #include <stdlib.h>
 
 /**
-* _get_printer -Function to print character
-* @specifier:	Character to be printed out
+* _select_mod -Function to print character
+* @c:			Character to be printed out
 * Return:		defualt NULL returned
 */
-printer _get_printer(const char *specifier)
+int (*_select_mod(char c))(va_list)
 {
-	int index;
-	static printer printers[] = {
-		{"c", _print_char},
-		{"s", _print_str},
-		{NULL, NULL}
-	};
+	if (c == 'c')
+		return (_print_char);
 
-	for (index = 0; printers[index].specifier != NULL; index++)
-	{
-		/**
-		* This current implementation assumes the specifer
-		* is one character long. This needs to be updated to
-		* support specifiers contiaining more characters
-		*/
+	if (c == 's')
+		return (_print_str);
 
-		if (*specifier == *(printers[index].specifier))
-			break;
-	}
-
-	return (printers[index]);
+	return (NULL);
 }
