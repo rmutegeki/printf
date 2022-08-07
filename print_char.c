@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdlib.h>
 
 /**
 * _print_char -	Function to print character 
@@ -10,7 +11,7 @@ int _print_char(va_list arguments)
 {
 	char c = va_arg(arguments, int);
 	_putchar(c);
-	return (0);
+	return (1);
 }
 
 /**
@@ -23,11 +24,13 @@ int _print_str(va_list arguments)
 {
 	char *s = va_arg(arguments, char *);
 	int count;
+	if (s == NULL)
+		s = "(NULL)";
 
 	for (count = 0; s[count]; count++)
 	{
 		_putchar(s[count]);
 	}
-	return (0);
+	return (count);
 }
 				
