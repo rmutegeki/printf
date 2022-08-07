@@ -16,6 +16,7 @@ int _printf(const char *format, ...)
 {
 	int index;
 	unsigned int count = 0;
+	int (*func_sel)(va_list);
 
 	va_list(arguments);
 	va_start(arguments, format);
@@ -28,6 +29,7 @@ int _printf(const char *format, ...)
 			count++;
 		}
 		else
+		{
 			/* To account for '%%' conversion specifier */
 			if (format[index + 1] == '%')
 			{
@@ -35,9 +37,14 @@ int _printf(const char *format, ...)
 				count++;
 			} 
 			/* Function Pointer to modifier functions */
-			_select_mod(format[index + 1])(arguments);
-			index++;
-			count++;
+			func_sel = _select_mod(format[index + 1]);
+			if (func_sel != NULL)
+			{
+				func_sel(arguments);
+				index++;
+				count++;
+			}
+		}
 	}
 	va_end(arguments);
 	return (count);
