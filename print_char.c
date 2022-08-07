@@ -9,7 +9,7 @@
 int _print_char(char c)
 {
 	_putchar(c);
-	return (1);
+	return (0);
 }
 
 /**
@@ -26,6 +26,6 @@ int _print_str(char *s)
 	{
 		_putchar(s[count]);
 	}
-	return (count);
+	return (0);
 }
 				

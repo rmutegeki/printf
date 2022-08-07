@@ -25,43 +25,42 @@ int _printf(const char *format, ...)
 	{
 		if (format[index] != '%')
 		{
-			_putchar(format[index]);
-			count++;
+			count += _print_char(format[index]);
 		}
 		/* To account for '%c' conversion specifier */
 		else 
 			if (format[index + 1] == 'c')
 			{
-				_print_char(va_arg(arguments, int));
+				count += _print_char(va_arg(arguments, int));
 				index++;
 			}
 		/* To account for '%s' conversion specifier */
-			if (format[index + 1] == 's')
+			else if (format[index + 1] == 's')
 			{
 				str = va_arg(arguments, char*);
 				index++;
 			
-				_print_str(str);
+				count += _print_str(str);
 			}
 		/* To account for '%%' conversion specifier */
-			if (format[index] == '%' && format[index + 1] == '%')
+			else if (format[index] == '%' && format[index + 1] == '%')
 			{
-				_print_char('%');
+				count += _print_char('%');
 			}
 		/* To account for '%d' conversion specifier */
-			if (format[index] == '%' && format[index + 1] == 'i')
+			else if (format[index] == '%' && format[index + 1] == 'i')
 			{
-				_print_i(va_arg(arguments, int));
+				count += _print_i(va_arg(arguments, int));
 				index++;
 			}
-			if (format[index] == '%' && format[index + 1] == 'd')
+			else if (format[index] == '%' && format[index + 1] == 'd')
 			{
-				_print_d(va_arg(arguments, int));
+				count += _print_d(va_arg(arguments, int));
 				index++;
 			}
-			if (format[index] == '%' && format[index + 1] == 'b')
+			else if (format[index] == '%' && format[index + 1] == 'b')
 			{
-				_print_b(va_arg(arguments, int));
+				count += _print_b(va_arg(arguments, int));
 				index++;
 			}
 	}

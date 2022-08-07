@@ -36,7 +36,7 @@ int _print_i(int num)
 			count++;
 	}
 	
-	return (count);
+	return (0);
 }
 
 /**
@@ -73,5 +73,5 @@ int _print_d(int num)
 			count++;
 	}
 	
-	return (count);
+	return (0);
 }
