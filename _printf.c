@@ -27,16 +27,17 @@ int _printf(const char *format, ...)
 			_putchar(format[index]);
 			count++;
 		}
-		/* To account for '%c' conversion specifier */
-		else 
-			_select_mod(format[index + 1])(arguments);
-			index++;
-		/* To account for '%%' conversion specifier */
+		else
+			/* To account for '%%' conversion specifier */
 			if (format[index + 1] == '%')
 			{
 				_putchar('%');
 				count++;
-			}
+			} 
+			/* Function Pointer to modifier functions */
+			_select_mod(format[index + 1])(arguments);
+			index++;
+			count++;
 	}
 	va_end(arguments);
 	return (count);
