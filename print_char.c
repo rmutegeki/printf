@@ -6,8 +6,9 @@
 * @c:			Character to be printed out			
 * Return:		(1) for character printed
 */
-int _print_char(char c)
+int _print_char(va_list arguments)
 {
+	char c = va_arg(arguments, int);
 	_putchar(c);
 	return (0);
 }
@@ -18,8 +19,9 @@ int _print_char(char c)
  *
  * Return: number of chars printed
  */
-int _print_str(char *s)
+int _print_str(va_list arguments)
 {
+	char *s = va_arg(arguments, char *);
 	int count;
 
 	for (count = 0; s[count]; count++)

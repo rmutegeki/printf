@@ -6,11 +6,12 @@
 * @num:		The intger to be printed out			
 * Return:      Prints out integer number 
 */
-int _print_i(int num)
+int _print_i(va_list arguments)
 {
 	int divisor = 1000000000; /* 10 ^ 9 */
 	int number[10];
 	int index ,num_elements, count;
+	int num = va_arg(arguments, int);
 
 	count = 0;
 	number[0] = num / divisor;
@@ -44,11 +45,12 @@ int _print_i(int num)
 * @num:			The intger to be printed out			
 * Return:      Prints out integer number 
 */
-int _print_d(int num)
+int _print_d(va_list arguments)
 {
 	int divisor = 1000000000; /* 10 ^ 9 */
 	int number[10];
 	int index ,num_elements, count;
+	int num = va_arg(arguments, int);
 	
 	number[0] = num / divisor;
 

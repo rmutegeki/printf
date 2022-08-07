@@ -7,12 +7,13 @@
 * @num:			The intger to be printed out			
 * Return:      Prints out integer number 
 */
-int _print_b(unsigned int num)
+int _print_b(va_list arguments)
 {
 	unsigned int divisor = 2147483648; /* 2 ^ 31 */
 	unsigned int number[32];
 	unsigned int index ,num_elements;
         int count;
+	unsigned int num = va_arg(arguments, int);
 
 	number[0] = num / divisor;
 
