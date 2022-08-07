@@ -14,6 +14,12 @@ int (*_select_mod(char c))(va_list)
 
 	if (c == 's')
 		return (_print_str);
+	
+	if (c == 'i')
+		return (_print_i);
+	
+	if (c == 'd')
+		return (_print_d);
 
 	return (NULL);
 }
