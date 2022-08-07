@@ -3,8 +3,8 @@
 
 int main(void)
 {
-	_printf("%b\n", 265);
-	printf("%d\n", 265);
+	_printf("%o\n", 265);
+	printf("%o\n", 265);
 
 	return (0);
 }
