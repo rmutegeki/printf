@@ -21,8 +21,5 @@ int _putchar(char c);
 int _printf(const char *format, ...);
 int _print_char(va_list arguments);
 int _print_str(va_list arguments);
-int _print_i(va_list arguments);
-int _print_d(va_list arguments);
-int _print_b(va_list arguments);
 printer _get_printer(const char *specifier);
 #endif /* _MAIN_H_ */
