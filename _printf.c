@@ -14,9 +14,9 @@
  */
 int _printf(const char *format, ...)
 {
-	int index, k;
+	int index;
 	char *str = NULL;
-	int count = 0;
+	unsigned int count = 0;
 
 	va_list(arguments);
 	va_start(arguments, format);
@@ -26,47 +26,44 @@ int _printf(const char *format, ...)
 		if (format[index] != '%')
 		{
 			_putchar(format[index]);
-			count += 1;
+			count++;
 		}
 		/* To account for '%c' conversion specifier */
-		else if (format[index] == '%' && format[index + 1] == 'c')
-		{
-			_putchar(va_arg(arguments, int));
-			index++;
-			count += 1;
-		}
+		else 
+			if (format[index + 1] == 'c')
+			{
+				_print_char(va_arg(arguments, int));
+				index++;
+			}
 		/* To account for '%s' conversion specifier */
-		else if (format[index] == '%' && format[index + 1] == 's')
-		{
-			str = va_arg(arguments, char*);
-			index++;
+			if (format[index + 1] == 's')
+			{
+				str = va_arg(arguments, char*);
+				index++;
 			
-			for (k = 0; str[k] != '\0'; k++)
-				_putchar(str[k]);
-				count += 1;
-		}
+				_print_str(str);
+			}
 		/* To account for '%%' conversion specifier */
-		else if (format[index] == '%' && format[index + 1] == '%')
-		{
-			_putchar('%');
-			count += 1;
-		}
+			if (format[index] == '%' && format[index + 1] == '%')
+			{
+				_print_char('%');
+			}
 		/* To account for '%d' conversion specifier */
-		else if (format[index] == '%' && format[index + 1] == 'i')
-		{
-			_print_i(va_arg(arguments, int));
-			index++;
-		}
-		else if (format[index] == '%' && format[index + 1] == 'd')
-		{
-			_print_d(va_arg(arguments, int));
-			index++;
-		}
-		else if (format[index] == '%' && format[index + 1] == 'b')
-		{
-			_print_b(va_arg(arguments, int));
-			index++;
-		}
+			if (format[index] == '%' && format[index + 1] == 'i')
+			{
+				_print_i(va_arg(arguments, int));
+				index++;
+			}
+			if (format[index] == '%' && format[index + 1] == 'd')
+			{
+				_print_d(va_arg(arguments, int));
+				index++;
+			}
+			if (format[index] == '%' && format[index + 1] == 'b')
+			{
+				_print_b(va_arg(arguments, int));
+				index++;
+			}
 	}
 	va_end(arguments);
 	return (count);
