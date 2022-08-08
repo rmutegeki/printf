@@ -2,9 +2,8 @@
 
 /**
  * _printf - partly replicates the C function printf()
- * @format: character string of directives
- * Description: This function is supposed to resemble printf().  Please review
- * the README for more information on how it works
+ * @format: character string of directives.
+ * Description: This function is supposed to resemble printf().
  * Return: number of characters printed
  */
 
