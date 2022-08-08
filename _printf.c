@@ -1,48 +1,49 @@
-#include <stdlib.h>
 #include "main.h"
-#include <stdarg.h>
 
 /**
-* _printf - function for printing
-* @format: The char to be printed
-* Return:	Returns a string
-*/
+ * _printf - partly replicates the C function printf()
+ * @format: character string of directives
+ * Description: This function is supposed to resemble printf().  Please review
+ * the README for more information on how it works
+ * Return: number of characters printed
+ */
+
 int _printf(const char *format, ...)
 {
-	va_list arguments;
-	int (*func_sel)(va_list);
-	int index = 0;
-	int characters_printed = 0;
+	va_list arg_list;
+	char *buffer = _calloc(LINE_MAX, sizeof(char));
+	unsigned int i = 0, temp_i, chars_processed = 0;
+	int (*temp_func)(char *, va_list), no_directive;
 
-	va_start(arguments, format);
-	while (format[index])
+	if (!format)
+		return (0);
+
+	va_start(arg_list, format);
+	while (format[i])
 	{
-		for (; format[index] != '%' && format[index]; index++)
+		no_directive = 1;
+		if (format[i] == '%')
 		{
-			_putchar(format[index]);
-			characters_printed++;
+			temp_i = i;
+			i += skip_spaces(format + i);
+			temp_func = get_directive(format[i]);
+			if (temp_func)
+			{
+				chars_processed += temp_func(buffer, arg_list);
+				i++, no_directive = 0;
+			}
+			else if (format[temp_i + 1] == ' ')
+			{
+				chars_processed += add_to_buffer(buffer, '%');
+				i = temp_i + skip_spaces(format + temp_i) - 1;
+			}
+			else
+				i = temp_i;
 		}
-
-		if (!format[index])
-			break;
-
-		func_sel = _select_mod(format[index + 1]);
-		if (func_sel != NULL)
-		{
-			characters_printed += func_sel(arguments);
-			index += 2; /* move past the specifier */
-			continue;
-		}
-
-		_putchar(format[index]);
-		characters_printed++;
-
-		if (format[index + 1] == '%')
-			index += 2; /* move past the % */
-		else
-			index++;
+		if (no_directive)
+			chars_processed += add_to_buffer(buffer, format[i++]);
 	}
-
-	va_end(arguments);
-	return (characters_printed);
+	print_buffer(buffer);
+	va_end(arg_list);
+	return (chars_processed);
 }
