@@ -9,7 +9,6 @@
 #include <stdio.h>
 
 /*macros*/
-
 /*structs*/
 /**
  * struct directive_struct - printf directives and helper print functions
