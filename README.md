@@ -59,14 +59,64 @@ The repository contains the following files:
 | ------------- | ----------------- |
 | main.h | contains all function prototypes used for `_printf` |
 | test folder | contains `main.c` source files used for testing compiled code under different conditions |
-| _printf.c | contains the function `_printf`, which uses the prototype `int _printf(const char *format, ...)`. The format string is composed of zero or more directives | 
+| \_printf.c | contains the function `_printf`, which uses the prototype `int _printf(const char *format, ...)`. The format string is composed of zero or more directives |
 | helper\_functions.c | Core helper functions for \_printf, including funcions `rev_string`, `skip_spaces` & `_strlen` for string manipulation and printing to stdout |
-| specifier\_csSr.c | contains functions `print_c` for `%c`, `print_s` for `%s`, `hex_print` for `%X` `print\_S` for `%S` `print\_r` for `%r` | 
+| specifier\_csSr.c | contains functions `print_c` for `%c`, `print_s` for `%s`, `hex_print` for `%X` `print\_S` for `%S` `print\_r` for `%r` |
 | specifier\_id.c | contains functions `print_i` for `%i` and `print_d` for `%d` |
 | specifier\_rot13.c | contains the function `print_R`, which handles the conversion specifier `R`|
 | specifier\_uob.c | contains functions `print_u` for `%u`,  `print_o` for `%o` and `print_b` for `%b`|
 | specifier\_xXp.c | contains functions `print_hex` for `%X`,  `print_x` for `%x` and `print_p` for `%p`|
-| _putchar.c | contains the function `\_putchar`, which writes a characters to standard output |
+| \_putchar.c | contains the function `_putchar`, which writes a characters to standard output |
+
+## Usage :running:
+
+To use this `_printf` function, clone this repository using this command below;
+```
+$ git clone https://github.com/rmutegeki/printf.git
+```
+Compile all `.c` files in the repository and include the header file `main.h` with any main function.
+
+Example `main.c`:
+```
+#include "main.h"
+{
+	_printf("Jebaaleko - Hello!\n");
+
+	return (0);
+}
+```
+
+Compilation:
+```
+$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o Test-file
+```
+
+Output:
+```
+$ ./Test-file
+Jebaaleko - Hello!
+$
+```
+
+## Authors :black_nib:
+
+* [Raymond Lukwago](https://github.com/lukwagoraymond) | [@RaymondLukwago](https://twitter.com/RaymondLukwago)
+* [Ronald Mutegeki](https://github.com/rmutegeki) | [@ronaldmutegeki_](https://twitter.com/ronaldmutegeki_)
+
+## Acknowledgements :pray:
+
+The `_printf` function emulates functionality of the C standard library function `printf`. This README borrows from the Linux man page [printf(3)](https://linux.die.net/man/3/printf).
+
+This program was written as part of the curriculum for ALX Africa School. ALX Africa School is a project-based peer learning programme designed to provide students with the in-deman skills for computer science careers. For more information, visit [this link](https://www.alxafrica.com/).
+
+
+
+
+
+
+
+
+
 
 
 
