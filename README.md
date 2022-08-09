@@ -37,3 +37,39 @@ The `_printf` function was coded on an Ubuntu 20.04 LTS machine and compiled usi
 - [x] Handle the custom conversion specifier `R` that prints the **rot13'ed** string.
 - [ ] All above options should work well together.
 
+## Function Description :speech_balloon:
+
+The function `_printf` writes output to standard output. The function writes under the control of a `format` string that specifies how subsequent arguments (accessed via the variable-length argument facilities of variadic functions under the `stdarg.h` header file) are converted for output.
+
+Prototype: `int _printf(const char *format, ...);`
+
+### Return Value
+
+Upon successful return, `printf` returns the number of characters printed (excluding the terminating null byte used to end output to strings). If an output error is encountered, the function returns `-1`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
