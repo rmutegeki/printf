@@ -51,6 +51,14 @@ Upon successful return, `printf` returns the number of characters printed (exclu
 
 The `format` string argument is a constant character string composed of zero or more directives: ordinary characters (not `%`) which are copied unchanged to the output stream; and conversion specifications, each of which results in fectching zero or more subsequent arguments. Conversion specification is introduced by the character `%` and ends with a conversion speicifier. In between the `%` character and conversion specifier, there may be (in order) zero or more *flags*, an optional minimum *field width*, an optional *precision* and an optional *length* modifier. The arguments must correspond with the conversioin specifier, and are used in the order given.
 
+## File Description :speech_balloon:
+
+The repository contains the following files:
+
+| **Function** | **Description** |
+| ------------- | ----------------- |
+| main.h | contains all function prototypes used for `_printf` |
+
 
 
 
