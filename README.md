@@ -18,8 +18,8 @@ The `_printf` function was coded on an Ubuntu 20.04 LTS machine and compiled usi
 
 ## Mandatory Tasks
 
-[x] Write function that produces output with conversion specifiers `c`, `s`, and `%`.
-[x] Handle conversion specifiers `d`,`i`.
+- [x] Write function that produces output with conversion specifiers `c`, `s`, and `%`.
+- [x] Handle conversion specifiers `d`,`i`.
 
 ## Advanced Tasks
 
