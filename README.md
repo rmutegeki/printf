@@ -58,14 +58,14 @@ The repository contains the following files:
 | **Function** | **Description** |
 | ------------- | ----------------- |
 | main.h | contains all function prototypes used for `_printf` |
-| test folder | |
-| _printf.c | | 
+| test folder | contains `main.c` source files used for testing compiled code under different conditions |
+| _printf.c | contains the function `_printf`, which uses the prototype `int _printf(const char *format, ...)`. The format string is composed of zero or more directives | 
 | helper\_functions.c | Core helper functions for \_printf, including funcions `rev_string`, `skip_spaces` & `_strlen` for string manipulation and printing to stdout |
 | specifier\_csSr.c | contains functions `print_c` for `%c`, `print_s` for `%s`, `hex_print` for `%X` `print\_S` for `%S` `print\_r` for `%r` | 
 | specifier\_id.c | contains functions `print_i` for `%i` and `print_d` for `%d` |
 | specifier\_rot13.c | contains the function `print_R`, which handles the conversion specifier `R`|
-| specifier_uob.c | |
-| specifier_xXp.c | |
+| specifier\_uob.c | contains functions `print_u` for `%u`,  `print_o` for `%o` and `print_b` for `%b`|
+| specifier\_xXp.c | contains functions `print_hex` for `%X`,  `print_x` for `%x` and `print_p` for `%p`|
 | _putchar.c | contains the function `\_putchar`, which writes a characters to standard output |
 
 
