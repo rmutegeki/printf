@@ -5,3 +5,13 @@
 ## Dependencies :couple:
 
 The `_printf` function was coded on an Ubuntu 20.04 LTS machine and compiled using `gcc` using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
+
+## Requirements for this Project :couple:
+
+* Code must comply with the `Betty` style and document checks.
+* Compile code using flags `-Wall`, `-Werror`, `-Wextra`,`-pedantic`, `-Wno-format`
+* Cannot use global variables.
+* Restricted to no more that **5** functions per file.
+* Function prototypes should be included in header file `main.h`
+* Header files should be include guarded.
+* Authorised functions and macros:.. `write`(`man 2 write`).. `malloc`(`man 3 malloc`)..`free`(`man 3 free`)..`va_start`(`man 3 va_start`)..`va_end`(`man 3 va_end`)..`va_copy`(`man 3 va_copy`)..`va_arg`(`man 3 va_arg`)
