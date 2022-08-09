@@ -58,6 +58,15 @@ The repository contains the following files:
 | **Function** | **Description** |
 | ------------- | ----------------- |
 | main.h | contains all function prototypes used for `_printf` |
+| test folder | |
+| _printf.c | | 
+| helper_functions.c | |
+| specifier_csSr.c | | 
+| specifier_id.c | |
+| specifier_rot13.c | |
+| specifier_uob.c | |
+| specifier_xXp.c | |
+| _putchar.c | contains the function `_putchar`, which writes a characters to standard output |
 
 
 
