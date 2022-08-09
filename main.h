@@ -1,114 +1,40 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
-/* begin standard C header files */
-#include <stdlib.h>
+/*Standard C headers*/
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <limits.h>
 #include <stdio.h>
 
-/* macros */
-
-#define BUFSIZE 1024
-#define TRUE (1 == 1)
-#define FALSE !TRUE
-#define LOWHEX 0
-#define UPHEX 1
-
-/* structs */
+/*macros*/
+/*structs*/
 /**
- * struct inventory_s - inventory of common variables needed
- * @fmt: the input format string
- * @i: index to traverse the format string
- * @args: the variadic arguments list of input arguments
- * @buffer: buffer to be written to before writing to stdout
- * @buf_index: index to traverse the buffer, also total chars written
- * @flag: notifies if there was a modifier flag
- * @space: notifies if space was printed
- * @c0: character to be written to buffer
- * @c1: character checking after % character
- * @c2: character to check 2 spaces after % symbol
- * @c3: unused for now, but may become a third specifier
- * @error: indicates error or not (0 no error, 1 error)
+ * struct print - structure for printing various types
+ * @t: type to print
+ * @f: function to print
  */
-typedef struct inventory_s
+typedef struct print
 {
-	const char *fmt;
-	int i;
-	va_list *args;
-	char *buffer;
-	int buf_index;
-	int flag;
-	int space;
-	char c0;
-	char c1;
-	char c2;
-	char c3;
-	int error;
-} inventory_t;
+	char *t;
+	int (*f)(va_list);
+} print_t;
 
-/**
- * struct matches_s - printf specifiers and paired function
- * @ch: the specifier
- * @func: pointer to the conversion specifier function
- */
-typedef struct matches_s
-{
-	char ch;
-	void (*func)(inventory_t *inv);
-} matches_t;
-
-/* initializing and ending functions */
-int _printf(const char *format, ...);
-inventory_t *build_inventory(va_list *args_list, const char *format);
-int end_func(inventory_t *arg_inv);
-
-/* custom memory allocation and buffer */
-void *_calloc(unsigned int nmemb, unsigned int size);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void write_buffer(inventory_t *inv);
-void puts_buffer(inventory_t *inv, char *str);
-
-/* string functions */
-void rev_string(char *s);
-int _strlen(char *s);
-int _strlenconst(const char *s);
 int _putchar(char c);
-void puts_mod(char *str, unsigned int l);
+int _printf(const char *format, ...);
+int print_c(va_list c);
+int print_s(va_list s);
+int print_i(va_list i);
+int print_d(va_list d);
+int print_u(va_list u);
+int print_b(va_list b);
+int print_o(va_list o);
+int print_x(va_list x);
+int print_X(va_list X);
+int print_p(va_list p);
+int print_S(va_list S);
+int print_r(va_list r);
+int print_R(va_list R);
 
-/* parse and match functionality */
-void (*match_specifier(inventory_t *inv))(inventory_t *inv);
-void parse_specifiers(inventory_t *inv);
-
-/* hexadecimal */
-void print_hex(inventory_t *inv, unsigned long int n, int hexcase, int size);
-void p_longlowhex(inventory_t *inv);
-void p_longuphex(inventory_t *inv);
-void p_lowhex(inventory_t *inv);
-void p_uphex(inventory_t *inv);
-
-/* integers */
-void print_integers(inventory_t *inv, long int n);
-void p_int(inventory_t *inv);
-void p_longint(inventory_t *inv);
-void print_unsign(inventory_t *inv, unsigned long int n);
-void p_uint(inventory_t *inv);
-void p_ulongint(inventory_t *inv);
-
-/* octals */
-void print_oct(inventory_t *inv, unsigned long int n, int size);
-void p_oct(inventory_t *inv);
-void p_longoct(inventory_t *inv);
-
-/* handles specifier functions */
-void p_char(inventory_t *inv);
-void p_string(inventory_t *inv);
-void p_string_hex(inventory_t *inv);
-void p_pointer(inventory_t *inv);
-void p_rev_string(inventory_t *inv);
-void p_rot13(inventory_t *inv);
-void p_percent(inventory_t *inv);
-void p_binary(inventory_t *inv);
-
-#endif /* end include guard for header files */
+#endif /* _MAIN_H_ */

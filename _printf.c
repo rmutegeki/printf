@@ -1,47 +1,81 @@
 #include "main.h"
 
 /**
- * _printf - behaves as the C function printf()
- * @format: character string of directives, flags, modifiers, and specifiers.
+ * check_for_specifiers - checks if there is a valid format specifier
+ * @format: possible format specifier
+ *
+ * Return: pointer to valid function or NULL
+ */
+static int (*check_for_specifiers(const char *format))(va_list)
+{
+	unsigned int i;
+	print_t p[] = {
+		{"c", print_c},
+		{"s", print_s},
+		{"i", print_i},
+		{"d", print_d},
+		{"u", print_u},
+		{"b", print_b},
+		{"o", print_o},
+		{"x", print_x},
+		{"X", print_X},
+		{"p", print_p},
+		{"S", print_S},
+		{"r", print_r},
+		{"R", print_R},
+		{NULL, NULL}
+	};
+
+	for (i = 0; p[i].t != NULL; i++)
+	{
+		if (*(p[i].t) == *format)
+		{
+			break;
+		}
+	}
+	return (p[i].f);
+}
+
+/**
+ * _printf - prints anything
+ * @format: list of argument types passed to the function
  *
  * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	va_list args_list;
-	inventory_t *inv;
-	void (*temp_func)(inventory_t *);
+	unsigned int i = 0, count = 0;
+	va_list valist;
+	int (*f)(va_list);
 
-	if (!format)
+	if (format == NULL)
 		return (-1);
-	va_start(args_list, format);
-	inv = build_inventory(&args_list, format);
-
-	while (inv && format[inv->i] && !inv->error)
+	va_start(valist, format);
+	while (format[i])
 	{
-		inv->c0 = format[inv->i];
-		if (inv->c0 != '%')
-			write_buffer(inv);
-		else
+		for (; format[i] != '%' && format[i]; i++)
 		{
-			parse_specifiers(inv);
-			temp_func = match_specifier(inv);
-			if (temp_func)
-				temp_func(inv);
-			else if (inv->c1)
-			{
-				if (inv->flag)
-					inv->flag = 0;
-				write_buffer(inv);
-			}
-			else
-			{
-				if (inv->space)
-					inv->buffer[--(inv->buf_index)] = '\0';
-				inv->error = 1;
-			}
+			_putchar(format[i]);
+			count++;
 		}
-		inv->i++;
+		if (!format[i])
+			return (count);
+		f = check_for_specifiers(&format[i + 1]);
+		if (f != NULL)
+		{
+			count += f(valist);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+		_putchar(format[i]);
+		count++;
+		if (format[i + 1] == '%')
+			i += 2;
+		else
+			i++;
 	}
-	return (end_func(inv));
+	va_end(valist);
+	return (count);
 }

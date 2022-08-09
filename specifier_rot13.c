@@ -1,40 +1,38 @@
 #include "main.h"
 
 /**
- * p_rot13 - translates string to ROT13 and writes to stdout buffer
- * @inv: the arguments inventory with most commonly used arguments
- * Return: string after conversion of ROT13
+ * print_R - prints a string in rot13
+ * @R: string to print
+ *
+ * Return: number of chars printed
  */
-void p_rot13(inventory_t *inv)
+int print_R(va_list R)
 {
-	int i, j, l;
-	char *alphabet, *rot_13, *str, *copy;
+	char *str;
+	unsigned int i, j;
+	int count = 0;
+	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	rot_13 =   "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
-	str = va_arg(*(inv->args), char *);
-	l = str ? _strlen(str) : 0;
-
-	if (l)
+	str = va_arg(R, char *);
+	if (str == NULL)
+		str = "(ahyy)";
+	for (i = 0; str[i]; i++)
 	{
-		copy = _calloc(l + 1, sizeof(char));
-
-		for (i = 0; str[i] != '\0'; i++)
+		for (j = 0; in[j]; j++)
 		{
-			for (j = 0; j < 52; j++)
+			if (in[j] == str[i])
 			{
-				if (str[i] == alphabet[j])
-				{
-					copy[i] = rot_13[j];
-					break;
-				}
+				_putchar(out[j]);
+				count++;
+				break;
 			}
-			if (j == 52)
-				copy[i] = str[i];
 		}
-
-		puts_buffer(inv, copy);
-		free(copy);
+		if (!in[j])
+		{
+			_putchar(str[i]);
+			count++;
+		}
 	}
+	return (count);
 }
-

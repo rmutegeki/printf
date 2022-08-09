@@ -1,57 +1,57 @@
 #include "main.h"
 
 /**
- * end_func - terminates _printf() in error cases
- * @inv: the arguments inventory with most commonly used arguments
- * Return: -1 always
+ * rev_string - reverses string
+ * @s: pointer to the input string
+ * Return: void
  */
-int end_func(inventory_t *inv)
+void rev_string(char *s)
 {
-	int ret_value;
+	int length = 0, c, temp;
 
-	if (inv)
+	while (s[length + 1] != '\0')
+		length++;
+	for (c = 0; c <= length / 2; c++)
 	{
-		ret_value = inv->error ? -1 : inv->buf_index;
-
-		if (inv->i)
-			puts_mod(inv->buffer, inv->buf_index);
-
-		va_end(*(inv->args));
-		if (inv->buffer)
-			free(inv->buffer);
-		free(inv);
+		temp = s[c], s[c] = s[length - c];
+		s[length - c] = temp;
 	}
-	else
-		ret_value = -1;
-
-	return (ret_value);
 }
 
 /**
- * build_inventory - builds variables inventory
- * @args_list: variadic arguments list
- * @format: format input string
- * Return: struct of arguments initialized
+ * skip_spaces - skips through spaces after '%' directive
+ * @format: input pointer to format string
+ * Return: new index value corresponding with first non space
  */
-inventory_t *build_inventory(va_list *args_list, const char *format)
+int skip_spaces(const char *format)
 {
-	inventory_t *inv;
+	int i = 1;
 
-	inv = malloc(sizeof(inventory_t) * 1);
+	while (format[i] && format[i] == ' ')
+		i++;
+	return (i);
+}
+/**
+ * _strlen - returns string length of input string
+ * @s: string to check length of
+ * Return: length of string
+ */
+int _strlen(char *s)
+{
+	int len = 0;
 
-	if (inv)
-	{
-		inv->buffer = _calloc(BUFSIZE, sizeof(char));
-		inv->buf_index = 0;
-		inv->args = args_list;
-		inv->fmt = format;
-		inv->i = 0;
-		inv->flag = 0;
-		if (!inv->buffer)
-			inv->error = 1;
-		else
-			inv->error = 0;
-	}
+	while (s[len] != '\0')
+		len++;
+	return (len);
+}
 
-	return (inv);
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }
