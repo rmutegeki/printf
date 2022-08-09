@@ -60,10 +60,10 @@ The repository contains the following files:
 | main.h | contains all function prototypes used for `_printf` |
 | test folder | |
 | _printf.c | | 
-| helper_functions.c | |
+| helper_functions.c | Core helper functions for _printf, including funcions `rev_string`, `skip_spaces` & `_strlen` for\ string manipulation and printing to stdout |
 | specifier_csSr.c | | 
 | specifier_id.c | |
-| specifier_rot13.c | |
+| specifier_rot13.c | contains the function `print_R`, which handles the conversion specifier `R`|
 | specifier_uob.c | |
 | specifier_xXp.c | |
 | _putchar.c | contains the function `_putchar`, which writes a characters to standard output |
