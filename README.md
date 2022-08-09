@@ -61,7 +61,7 @@ The repository contains the following files:
 | test folder | |
 | _printf.c | | 
 | helper\_functions.c | Core helper functions for \_printf, including funcions `rev_string`, `skip_spaces` & `_strlen` for string manipulation and printing to stdout |
-| specifier\_csSr.c | contains functions `print_c` for `%c`, `print_s` for `%s`, `hex_print` for `%X`print\_S` for `%S` `print\_r` for `%r` | 
+| specifier\_csSr.c | contains functions `print_c` for `%c`, `print_s` for `%s`, `hex_print` for `%X` `print\_S` for `%S` `print\_r` for `%r` | 
 | specifier\_id.c | contains functions `print_i` for `%i` and `print_d` for `%d` |
 | specifier\_rot13.c | contains the function `print_R`, which handles the conversion specifier `R`|
 | specifier_uob.c | |
