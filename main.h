@@ -11,43 +11,30 @@
 /*macros*/
 /*structs*/
 /**
- * struct specifier_struct - printf specifiers and helper print functions
- * @ch: the specifier
- * @func: pointer to the specifier function
+ * struct print - structure for printing various types
+ * @t: type to print
+ * @f: function to print
  */
-typedef struct specifier_struct
+typedef struct print
 {
-	char ch;
-	int (*func)(char *buffer, va_list arg_list);
-} specifiers_t;
+	char *t;
+	int (*f)(va_list);
+} print_t;
 
-
-/*Our custom printf*/
-int _printf(const char *format, ...);
-
-/*Helper function prototypes*/
-void *_calloc(unsigned int nmemb, unsigned int size);
-void rev_string(char *s);
-int skip_spaces(const char *format);
-int _strlen(char *s);
 int _putchar(char c);
-int add_to_buffer(char *buffer, char c);
-int (*match_specifier(char c))(char *buffer, va_list arg_list);
-void print_buffer(char *);
-/*end helper function prototypes*/
-
-/*functions that write to buffer*/
-int p_char(char *buffer, va_list arg_list);
-int p_string(char *buffer, va_list arg_list);
-int p_string_hex(char *buffer, va_list arg_list);
-int p_pointer(char *buffer, va_list arg_list);
-int p_percent(char *buffer, va_list arg_list);
-int p_int(char *buffer, va_list arg_list);
-int p_uint(char *buffer, va_list arg_list);
-int p_oct(char *buffer, va_list arg_list);
-int p_lowhex(char *buffer, va_list arg_list);
-int p_uphex(char *buffer, va_list arg_list);
-int p_binary(char *buffer, va_list arg_list);
-/*end functions that write to te buffer*/
+int _printf(const char *format, ...);
+int print_c(va_list c);
+int print_s(va_list s);
+int print_i(va_list i);
+int print_d(va_list d);
+int print_u(va_list u);
+int print_b(va_list b);
+int print_o(va_list o);
+int print_x(va_list x);
+int print_X(va_list X);
+int print_p(va_list p);
+int print_S(va_list S);
+int print_r(va_list r);
+int print_R(va_list R);
 
 #endif /* _MAIN_H_ */

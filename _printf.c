@@ -1,49 +1,81 @@
 #include "main.h"
 
 /**
- * _printf - behaves as the C function printf()
- * @format: character string of directives
- * Description: This function is supposed to resemble printf().  Please review
- * the README for more information on how it works
+ * check_for_specifiers - checks if there is a valid format specifier
+ * @format: possible format specifier
+ *
+ * Return: pointer to valid function or NULL
+ */
+static int (*check_for_specifiers(const char *format))(va_list)
+{
+	unsigned int i;
+	print_t p[] = {
+		{"c", print_c},
+		{"s", print_s},
+		{"i", print_i},
+		{"d", print_d},
+		{"u", print_u},
+		{"b", print_b},
+		{"o", print_o},
+		{"x", print_x},
+		{"X", print_X},
+		{"p", print_p},
+		{"S", print_S},
+		{"r", print_r},
+		{"R", print_R},
+		{NULL, NULL}
+	};
+
+	for (i = 0; p[i].t != NULL; i++)
+	{
+		if (*(p[i].t) == *format)
+		{
+			break;
+		}
+	}
+	return (p[i].f);
+}
+
+/**
+ * _printf - prints anything
+ * @format: list of argument types passed to the function
+ *
  * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	va_list arg_list;
-	char *buffer = _calloc(LINE_MAX, sizeof(char));
-	unsigned int i = 0, temp_i, chars_written = 0;
-	int (*temp_func)(char *, va_list), no_conversion;
+	unsigned int i = 0, count = 0;
+	va_list valist;
+	int (*f)(va_list);
 
-	if (!format)
-		return (0);
-
-	va_start(arg_list, format);
+	if (format == NULL)
+		return (-1);
+	va_start(valist, format);
 	while (format[i])
 	{
-		no_conversion = 1;
-		if (format[i] == '%')
+		for (; format[i] != '%' && format[i]; i++)
 		{
-			temp_i = i;
-			i += skip_spaces(format + i);
-			temp_func = match_specifier(format[i]);
-			if (temp_func)
-			{
-				chars_written += temp_func(buffer, arg_list);
-				i++, no_conversion = 0;
-			}
-			else if (format[temp_i + 1] == ' ')
-			{
-				chars_written += add_to_buffer(buffer, '%');
-				i = temp_i + skip_spaces(format + temp_i) - 1;
-			}
-			else
-				i = temp_i;
+			_putchar(format[i]);
+			count++;
 		}
-		if (no_conversion)
-			chars_written += add_to_buffer(buffer, format[i++]);
+		if (!format[i])
+			return (count);
+		f = check_for_specifiers(&format[i + 1]);
+		if (f != NULL)
+		{
+			count += f(valist);
+			i += 2;
+			continue;
+		}
+		if (!format[i + 1])
+			return (-1);
+		_putchar(format[i]);
+		count++;
+		if (format[i + 1] == '%')
+			i += 2;
+		else
+			i++;
 	}
-	print_buffer(buffer);
-	free(buffer);
-	va_end(arg_list);
-	return (chars_written);
+	va_end(valist);
+	return (count);
 }
