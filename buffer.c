@@ -64,29 +64,6 @@ void *_realloc(void *ptr, unsigned int old, unsigned int new)
 }
 
 /**
- * add_to_buffer - adds input char to buffer 1 at a time,
- * and updates buf_length
- * @buffer: buffer
- * @c: char to be added to buffer
- * Return: buffer length or new buffer length
- */
-int add_to_buffer(char *buffer, char c)
-{
-	int i, buf_len = _strlen(buffer);
-
-	if (buf_len > LINE_MAX - 2)
-	{
-		print_buffer(buffer);
-		buffer[0] = c;
-		for (i = 1; i < LINE_MAX; i++)
-			buffer[i] = '\0';
-		return (1);
-	}
-	*(buffer + buf_len) = c;
-	return (1);
-}
-
-/**
  * write_buffer - adds input char to buffer 1 at a time
  * @inv: the arguments inventory with most commonly used arguments
  */
