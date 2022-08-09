@@ -95,3 +95,4 @@ void p_string(inventory_t *inv)
 	if (l)
 		puts_buffer(inv, string);
 }
+

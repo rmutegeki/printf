@@ -29,3 +29,4 @@ void p_percent(inventory_t *inv)
 
 	write_buffer(inv);
 }
+
