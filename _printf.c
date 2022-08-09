@@ -2,47 +2,46 @@
 
 /**
  * _printf - behaves as the C function printf()
- * @format: character string of directives
+ * @format: character string of directives, flags, modifiers, and specifiers.
  *
  * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	va_list arg_list;
-	char *buffer = _calloc(LINE_MAX, sizeof(char));
-	unsigned int i = 0, temp_i, chars_written = 0;
-	int (*temp_func)(char *, va_list), no_conversion;
+	va_list args_list;
+	inventory_t *inv;
+	void (*temp_func)(inventory_t *);
 
 	if (!format)
-		return (0);
+		return (-1);
+	va_start(args_list, format);
+	inv = build_inventory(&args_list, format);
 
-	va_start(arg_list, format);
-	while (format[i])
+	while (inv && format[inv->i] && !inv->error)
 	{
-		no_conversion = 1;
-		if (format[i] == '%')
+		inv->c0 = format[inv->i];
+		if (inv->c0 != '%')
+			write_buffer(inv);
+		else
 		{
-			temp_i = i;
-			i += skip_spaces(format + i);
-			temp_func = match_specifier(format[i]);
+			parse_specifiers(inv);
+			temp_func = match_specifier(inv);
 			if (temp_func)
+				temp_func(inv);
+			else if (inv->c1)
 			{
-				chars_written += temp_func(buffer, arg_list);
-				i++, no_conversion = 0;
-			}
-			else if (format[temp_i + 1] == ' ')
-			{
-				chars_written += add_to_buffer(buffer, '%');
-				i = temp_i + skip_spaces(format + temp_i) - 1;
+				if (inv->flag)
+					inv->flag = 0;
+				write_buffer(inv);
 			}
 			else
-				i = temp_i;
+			{
+				if (inv->space)
+					inv->buffer[--(inv->buf_index)] = '\0';
+				inv->error = 1;
+			}
 		}
-		if (no_conversion)
-			chars_written += add_to_buffer(buffer, format[i++]);
+		inv->i++;
 	}
-	print_buffer(buffer);
-	free(buffer);
-	va_end(arg_list);
-	return (chars_written);
+	return (end_func(inv));
 }
