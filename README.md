@@ -24,4 +24,12 @@ The `_printf` function was coded on an Ubuntu 20.04 LTS machine and compiled usi
 ## Advanced Tasks
 
 - [x] Handle conversion specifier `b`.
+- [x] Handle conversion specifier `u`,`o`,`x`,`X`.
+- [] Use a local buffer of *1024* chars in order to call write as little as possible.
+- [x] Handle conversion specifier `s`.
+- [x] Handle conversion specifier `p`.
+- [] Handle flag characters `+`, space, and `#` for non-custom conversion specifiers.
+- [] Handle length modifiers `i` and `h` for non-custom conversion specifiers.
+- [] Handle the field width for non-custom conversion specifiers.
+- [] Handle the precision for non-custom conversion specifiers.
 
