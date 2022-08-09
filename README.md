@@ -23,5 +23,5 @@ The `_printf` function was coded on an Ubuntu 20.04 LTS machine and compiled usi
 
 ## Advanced Tasks
 
-[x] Handle conversion specifier `b`.
+- [x] Handle conversion specifier `b`.
 
