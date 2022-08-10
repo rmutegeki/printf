@@ -25,7 +25,7 @@ The `_printf` function was coded on an Ubuntu 20.04 LTS machine and compiled usi
 
 - [x] Handle conversion specifier `b`.
 - [x] Handle conversion specifier `u`,`o`,`x`,`X`.
-- [ ] Use a local buffer of *1024* chars in order to call write as little as possible.
+- [x] Use a local buffer of *1024* chars in order to call write as little as possible.
 - [x] Handle conversion specifier `s`.
 - [x] Handle conversion specifier `p`.
 - [ ] Handle flag characters `+`, **space**, and `#` for non-custom conversion specifiers.
@@ -79,6 +79,7 @@ Compile all `.c` files in the repository and include the header file `main.h` wi
 Example `main.c`:
 ```
 #include "main.h"
+int main ()
 {
 	_printf("Jebaaleko - Hello!\n");
 
